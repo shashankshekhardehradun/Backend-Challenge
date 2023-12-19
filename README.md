@@ -3,7 +3,7 @@
 ## Node.js Backend Challenge: Insurance Policy Quote Integration
 
 ### Scenario:
-You work for CaliSafe Insurance, a fictitious insurance company in California. Your task is to create a backend service that integrates with an external insurance dispatcher API, fetches quotes based on user input, and returns the best three quotes to the front-end.
+You work for UTSafe Insurance, a fictitious insurance company in Utha. Your task is to create a backend service that integrates with an external insurance dispatcher API, fetches quotes based on user input, and returns the best three quotes to the front-end.
 
 ### Requirements:
 
