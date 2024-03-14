@@ -25,7 +25,7 @@ For testing, follow these steps:
 * Stop the application by typing ```docker-compose stop```
 
 ### Directory Structure:
-
+```
 Backend-Challenge
  |   
  +-- challenge
@@ -47,7 +47,7 @@ Backend-Challenge
  +-- gitignore
  |    
  +-- README.md
-
+```
  ### API Endpoints:
 The API endpoints have been implemented as described in the challenge description.
 
