@@ -2,57 +2,57 @@
 
 ## Node.js Backend Challenge: Insurance Policy Quote Integration
 
-### Scenario:
-You work for UTSafe Insurance, a fictitious insurance company in Utha. Your task is to create a backend service that integrates with an external insurance dispatcher API, fetches quotes based on user input, and returns the best three quotes to the front-end.
-
 ### Requirements:
+Docker Version 25.0.2
+pgadmin 4v8
 
-#### Setup:
-Initialize a new Node.js project using TypeScript.
-Set up a PostgreSQL database using your preferred ORM (e.g., TypeORM, Sequelize).
+### Execution Instructions:
 
-#### API Endpoints:
-`/api/quotes`: POST request that takes user details (name, age, car model, years of driving experience) and fetches insurance quotes.
-`/api/quotes/best-three`: GET request that retrieves the best three quotes (lowest price) from the previously fetched quotes.
+You need to build using the following command:
+```docker-compose up --build```
 
-#### Integration:
-Integrate with a mocked insurance dispatcher API. Use tools like json-server or MirageJS to mock the external API.
+Open your browser on localhost:3000 so that you can use the application.
 
-#### Database:
-Store all fetched quotes in the PostgreSQL database with relevant user details.
+To visualize the updates in the database, use the following steps:
+* Find the name of the container using ```docker ps```
+* Then, run the command ```docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id``` to return the container's IP address.
+* Open up the web UI of pgadmin, and enter the IP Address and Host, and port 5432 along with the database name to connect to the database.
+* Once connected, you can use the query tool in pgadmin to run queries on the database.
 
-#### Error Handling:
-Properly handle potential errors like invalid user input, API failures, etc.
+For testing, follow these steps:
+* ```docker ps```
+* Using the name of the backend server obtained above, run ```docker exec -it <name-of-backend-server> npm test```
+* Stop the application by typing ```docker-compose stop```
 
-#### Documentation:
-Provide a brief README detailing how to set up and run the project.
+### Directory Structure:
 
-#### Bonus (not required, but good to have):
-- Implement caching to speed up repeated requests.
-- Include unit and integration tests.
-- Implement a rate-limiting mechanism to avoid overloading the mocked dispatcher API.
-- Containerize the application using Docker.
-- Use an AWS service, like AWS Lambda, to showcase a serverless deployment.
+Backend-Challenge
+ |   
+ +-- challenge
+ |  |  
+ |  +-- db
+ |  |
+ |  +-- src // This contains the entrypoint of the code (app.ts).
+ |  |      |
+ |  |      +-- config // Contains db.ts to initialize the database
+ |  |      |
+ |  |      +-- controller // Contains get.controller.ts and post.controller.ts
+ |  |      |
+ |  |      +-- public // Contains the frontend of the website
+ |  |      |
+ |  |      +-- app.ts
+ |  |
+ |  +-- test // Contains the Integration Testing suite
+ |    
+ +-- gitignore
+ |    
+ +-- README.md
 
-#### Evaluation Points (Total: 100 points):
+ ### API Endpoints:
+The API endpoints have been implemented as described in the challenge description.
 
-- Project Setup (20 points)
-- Proper TypeScript setup: 10 points.
-- PostgreSQL and ORM setup: 10 points.
-- API Endpoints (25 points)
-- Correct implementation of /api/quotes: 15 points.
-- Correct implementation of /api/quotes/best-three: 10 points.
-- Integration & Database (25 points)
-- Successful integration with the mocked API: 10 points.
-- Proper data storage and retrieval with PostgreSQL: 15 points.
-- Error Handling (10 points)
-- Comprehensive error handling: 10 points.
-- Documentation (10 points)
-- Clear and concise README: 10 points.
+### Database:
+The database details are stored in a db.ts file within config in the src directory. The database contains 4 tables: Users, Cars, Quotes, and CarQuotes (junction table).
 
-#### Bonus Points (up to 10 points each)
-- Caching: 5 points.
-- Testing: 5 points.
-- Rate limiting: 5 points.
-- Docker: 5 points.
-- Serverless deployment with AWS: 10 points.
+### Error Handling:
+Comprehensive testing has been done, with 100% jest coverage, as shown in the test coverage report.
